@@ -1,4 +1,4 @@
-(ns datas)
+(ns data)
 
 (import 'net.slreynolds.ds.ObjectSaver)
 (import 'net.slreynolds.ds.model.BuilderOptions)
