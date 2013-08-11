@@ -9,36 +9,38 @@
 (import 'net.slreynolds.ds.Bar)
 
 
- 
-(defn save-to-files [objs names fileName]
+(defn create-save-to-files [dir]
+   (fn  [objs names fileName]
       (let [gviz-exporter (GraphVizExporter.)
             gviz-saver (ObjectSaver. gviz-exporter)
             tulip-exporter (TulipExporter.)
             tulip-saver (ObjectSaver. tulip-exporter)
             opts {BuilderOptions/INLINE_STRINGS Boolean/FALSE}]
-        (. gviz-saver save objs names (conj opts [ExporterOptions/OUTPUT_PATH (str "../graphs/clojure/" fileName  ".dot")]))
-        (. tulip-saver save objs names (conj opts [ExporterOptions/OUTPUT_PATH (str "../graphs/clojure/" fileName  ".tlp")]))
-            ))
-            
+        (. gviz-saver save objs names (conj opts [ExporterOptions/OUTPUT_PATH (str dir "/" fileName  ".dot")]))
+        (. tulip-saver save objs names (conj opts [ExporterOptions/OUTPUT_PATH (str dir "/" fileName  ".tlp")]))
+            )))
+           
+(def save-to-clojure (create-save-to-files "../graphs/clojure"))
+
 (defn list-ex []
   (let [w (list (Foo. 1) (Foo. 2) (Foo. 3))
         x (rest w)
         y (conj  w (Foo. 0))]
         ;z (cons (Foo. 4) w)]
-    (save-to-files (list w x y) '("w" "(rest w)" "(conj w (Foo. 0))" ) "list")
+    (save-to-clojure (list w x y) '("w" "(rest w)" "(conj w (Foo. 0))" ) "list")
     ))
 
 
 (defn amap-ex []
   (let [x {(Foo. 1) (Bar. 1) (Foo. 2) (Bar. 2)}
         y (assoc  x (Foo. 3) (Bar. 3))]
-    (save-to-files (list x y) '("x" "after assoc ...") "amap")
+    (save-to-clojure (list x y) '("x" "after assoc ...") "amap")
     ))
 
 (defn hmap-ex []
   (let [x (hash-map (Foo. 1) (Bar. 1) (Foo. 2) (Bar. 2))
         y (assoc  x (Foo. 3) (Bar. 3))]
-    (save-to-files (list x y) '("x" "after assoc ...") "hmap")
+    (save-to-clojure (list x y) '("x" "after assoc ...") "hmap")
     ))
 
 (defn large-hmap []
@@ -46,7 +48,7 @@
         codomain (map (fn [x] (Bar. x)) (range 1 20))
         x (apply hash-map (interleave domain codomain))
         y (assoc x  21 (Bar. 77))]
-    (save-to-files (list x y) '("x" "assoc") "large-hmap")
+    (save-to-clojure (list x y) '("x" "assoc") "large-hmap")
     ))
 
 (defn vec-ex []
@@ -54,13 +56,13 @@
         x (pop w)
         y (conj w (Foo. 4))
         z (assoc w 2 (Foo. 8))]
-    (save-to-files (list w x y z) '("w" "pop" "conj" "assoc") "vec")
+    (save-to-clojure (list w x y z) '("w" "pop" "conj" "assoc") "vec")
     ))
 
 (defn large-vec []
   (let [x (vec (map (fn [x] (Foo. x)) (range 1 35)));(take 35 words))
         y (assoc x 34 (Foo. 88))]
-    (save-to-files (list x y) '("x" "assoc") "large-vec")
+    (save-to-clojure (list x y) '("x" "assoc") "large-vec")
     ))
 
 (defn simple-range [i limit]
@@ -72,7 +74,7 @@
    (let [w (simple-range 1 4)
          x (rest w)]
          ;y (range 1 4)]
-     (save-to-files (list w x) '("original simple-range" "rest of ...") "lazylist")
+     (save-to-clojure (list w x) '("original simple-range" "rest of ...") "lazylist")
      ))
 
 (defn runall []
