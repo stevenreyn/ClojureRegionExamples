@@ -1,13 +1,10 @@
 # ClojureRegionExamples
 
-A Clojure library designed to ... well, that part is up to you.
+Examples showing use of RegionViewer on some Clojure collections. Depends on the 
+project RegionViewer and Clojure.  Tested with Clojure 1.5.1. 
 
 ## Usage
 
 FIXME
 
-## License
 
-Copyright © 2013 FIXME
-
-Distributed under the Eclipse Public License, the same as Clojure.
