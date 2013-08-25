@@ -4,7 +4,7 @@
 (import 'net.slreynolds.ds.model.BuilderOptions)
 (import 'net.slreynolds.ds.export.ExporterOptions)
 (import 'net.slreynolds.ds.export.GraphVizExporter)
-(import 'net.slreynolds.ds.export.TulipExporter)
+(import 'net.slreynolds.ds.export.SimpleGraphVizExporter)
 (import 'net.slreynolds.ds.Foo)
 (import 'net.slreynolds.ds.Bar)
 
@@ -13,11 +13,11 @@
    (fn  [objs names fileName]
       (let [gviz-exporter (GraphVizExporter.)
             gviz-saver (ObjectSaver. gviz-exporter)
-            tulip-exporter (TulipExporter.)
-            tulip-saver (ObjectSaver. tulip-exporter)
+            simple-gviz-exporter (SimpleGraphVizExporter.)
+            simple-gviz-saver (ObjectSaver. simple-gviz-exporter)
             opts {BuilderOptions/INLINE_STRINGS Boolean/FALSE}]
         (. gviz-saver save objs names (conj opts [ExporterOptions/OUTPUT_PATH (str dir "/" fileName  ".dot")]))
-        (. tulip-saver save objs names (conj opts [ExporterOptions/OUTPUT_PATH (str dir "/" fileName  ".tlp")]))
+        (. simple-gviz-saver save objs names (conj opts [ExporterOptions/OUTPUT_PATH (str dir "/" fileName  "_simple.dot")]))
             )))
            
 (def save-to-clojure (create-save-to-files "../graphs/clojure"))
