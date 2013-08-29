@@ -23,7 +23,7 @@
 (def save-to-clojure (create-save-to-files "../graphs/clojure"))
 
 (defn list-ex []
-  (let [w (list (Foo. 1) (Foo. 2) (Foo. 3))
+  (let [w '((Foo. 1) (Foo. 2) (Foo. 3))
         x (rest w)
         y (conj  w (Foo. 0))]
         ;z (cons (Foo. 4) w)]
@@ -47,7 +47,7 @@
   (let [domain (map (fn [x] (Foo. x)) (range 1 20))
         codomain (map (fn [x] (Bar. x)) (range 1 20))
         x (apply hash-map (interleave domain codomain))
-        y (assoc x  21 (Bar. 77))]
+        y (assoc x  (Foo. 21) (Bar. 77))]
     (save-to-clojure (list x y) '("x" "assoc") "large-hmap")
     ))
 
