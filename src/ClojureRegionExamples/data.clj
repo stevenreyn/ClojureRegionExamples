@@ -39,13 +39,15 @@
 (defn amap-ex []
   (let [x {(Foo. 1) (Bar. 1) (Foo. 2) (Bar. 2)}
         y (assoc  x (Foo. 3) (Bar. 3))]
-    (save-to-clojure (list x y) '("x" "after assoc ...") "amap")
+    (save-to-clojure (list x) '("x") "small-map")
+    (save-to-clojure (list x y) '("x" "after assoc ...") "small-map-ops")
     ))
 
 (defn hmap-ex []
   (let [x (hash-map (Foo. 1) (Bar. 1) (Foo. 2) (Bar. 2))
         y (assoc  x (Foo. 3) (Bar. 3))]
-    (save-to-clojure (list x y) '("x" "after assoc ...") "hmap")
+    (save-to-clojure (list x) '("x") "hash-map")
+    (save-to-clojure (list x y) '("x" "after assoc ...") "hash-map-ops")
     ))
 
 (defn large-hmap []
