@@ -23,14 +23,15 @@
 (def save-to-clojure (create-save-to-files "../graphs/clojure"))
 
 (defn list-ex []
-  (let [w (list (Foo. 1) (Foo. 2) (Foo. 3))
+  (let [w (list (Foo. 1) (Foo. 2))
         x (rest w)
         y (conj  w (Foo. 0))]
-    (save-to-clojure (list w x y) '("w" "(rest w)" "(conj w (Foo. 0))" ) "list")
+    (save-to-clojure (list w) '("w") "list")
+    (save-to-clojure (list w x y) '("w" "(rest w)" "(conj w (Foo. 0))" ) "list-ops")
     ))
 
 (defn list-cons []
-  (let [w (list (Foo. 1) (Foo. 2) (Foo. 3))
+  (let [w (list (Foo. 1) (Foo. 2))
         z (cons (Foo. 4) w)]
     (save-to-clojure (list w z) '("w"  "(cons w (Foo. 4))" ) "list-cons")
     ))
