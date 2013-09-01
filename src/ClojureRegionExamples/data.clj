@@ -23,7 +23,7 @@
 (def save-to-clojure (create-save-to-files "../graphs/clojure"))
 
 (defn list-ex []
-  (let [w '((Foo. 1) (Foo. 2) (Foo. 3))
+  (let [w (list (Foo. 1) (Foo. 2) (Foo. 3))
         x (rest w)
         y (conj  w (Foo. 0))]
         ;z (cons (Foo. 4) w)]
