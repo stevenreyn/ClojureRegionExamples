@@ -26,10 +26,14 @@
   (let [w (list (Foo. 1) (Foo. 2) (Foo. 3))
         x (rest w)
         y (conj  w (Foo. 0))]
-        ;z (cons (Foo. 4) w)]
     (save-to-clojure (list w x y) '("w" "(rest w)" "(conj w (Foo. 0))" ) "list")
     ))
 
+(defn list-cons []
+  (let [w (list (Foo. 1) (Foo. 2) (Foo. 3))
+        z (cons (Foo. 4) w)]
+    (save-to-clojure (list w z) '("w"  "(cons w (Foo. 4))" ) "list-cons")
+    ))
 
 (defn amap-ex []
   (let [x {(Foo. 1) (Bar. 1) (Foo. 2) (Bar. 2)}
@@ -79,6 +83,7 @@
 
 (defn runall []
   (list-ex)
+  (list-cons)
   (amap-ex)
   (hmap-ex)
   (large-hmap)
