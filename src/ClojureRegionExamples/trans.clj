@@ -10,11 +10,13 @@
 ; Do a transient
 (defn trans []
   (let [w (vector (Foo. 1) (Foo. 2) (Foo. 3))]
-    (save-to-maps (list w) '("w before") "before")
+    (save-to-maps (list w) '("w") "before")
     (let [wt (transient w)
+          _ (save-to-maps (list w wt) '("w" "wt") "after1")
           _ (conj! wt (Foo. 4))
+          _ (save-to-maps (list w wt) '("w" "wt") "after2")
           wp (persistent! wt)]
-      (save-to-maps (list w wt wp) '("w" "wt" "wp") "after")
+      (save-to-maps (list w wt wp) '("w" "wt" "wp") "after3")
     )))
 
 
