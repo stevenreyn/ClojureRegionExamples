@@ -1,10 +1,6 @@
 (ns maps)
 
-(import 'net.slreynolds.ds.ObjectSaver)
-(import 'net.slreynolds.ds.model.BuilderOptions)
-(import 'net.slreynolds.ds.export.ExporterOptions)
-(import 'net.slreynolds.ds.export.GraphVizExporter)
-(import 'net.slreynolds.ds.export.TulipExporter)
+
 (import 'net.slreynolds.ds.Foo)
 (import 'net.slreynolds.ds.Bar)
 
