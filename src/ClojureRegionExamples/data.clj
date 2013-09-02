@@ -63,8 +63,12 @@
         x (pop w)
         y (conj w (Foo. 4))
         z (assoc w 2 (Foo. 8))]
-    (save-to-clojure (list w x y z) '("w" "pop" "conj" "assoc") "vec")
+    (save-to-clojure (list w) '("w") "vec")
+    (save-to-clojure (list w x) '("w" "pop") "vec-ops1")
+    (save-to-clojure (list w x y) '("w" "pop" "conj") "vec-ops2")
+    (save-to-clojure (list w x y z) '("w" "pop" "conj" "assoc") "vec-ops3")
     ))
+
 
 (defn large-vec []
   (let [x (vec (map (fn [x] (Foo. x)) (range 1 35)));(take 35 words))
