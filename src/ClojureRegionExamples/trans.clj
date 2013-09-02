@@ -11,8 +11,10 @@
 (defn trans []
   (let [w (vector (Foo. 1) (Foo. 2) (Foo. 3))]
     (save-to-maps (list w) '("w before") "before")
-    (let [wt (transient w)]
-      (save-to-maps (list w wt) '("w" "wt") "wt")
+    (let [wt (transient w)
+          _ (conj! wt (Foo. 4))
+          wp (persistent! wt)]
+      (save-to-maps (list w wt wp) '("w" "wt" "wp") "after")
     )))
 
 
