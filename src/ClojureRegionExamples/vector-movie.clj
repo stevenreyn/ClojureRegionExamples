@@ -19,7 +19,7 @@
     (save-to-vmovie (list myVector) '("vector") "vector1")
     (loop [i 1
            myVec myVector]
-      (if (< i 60)
+      (if (< i 65)
         (recur (+ i 1) (add-to-end myVec i)))))
   (print "thanks"))
   
