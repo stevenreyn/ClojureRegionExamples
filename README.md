@@ -7,10 +7,11 @@ You should first read the documentation for the
 [RegionViewer project](http://stevenreyn.github.io/RegionViewer). These Clojure 
 examples are in src/ClojureRegionExamples. The most basic example is data.clj.
 To run it, you will need to have your IDE setup with Clojure and include the RegionViewer
-project in your classpath. Alternatively you can use leiningen with RegionViewer
+project in your classpath. This project has not yet been configured to use leiningen.
+If you do want to use leiningen, you will need to have RegionViewer
 in your classpath.
 
-The other examples depend on a function defined in data.clj so you should load
-that file first in your REPL.
+The examples from the other files depend on a function defined in data.clj. So you should load
+data.clj first in your REPL.
 
 
