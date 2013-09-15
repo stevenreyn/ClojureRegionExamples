@@ -16,7 +16,13 @@
 
 (defn compute-bar-id [i] 
   ; i can be 2 thru 6
-  i)
+  (case i
+    2 32
+    3 (* 32 2)
+    4 (* 32 3)
+    5 (* 32 4)
+    6 (* 32 5)
+    -1))
 
 (defn runall []
   (let [myHashMap (hash-map (Bar. 0) (Foo. 0))]
