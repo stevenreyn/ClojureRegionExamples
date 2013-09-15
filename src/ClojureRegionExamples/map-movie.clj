@@ -15,21 +15,15 @@
     ))
 
 (defn compute-bar-id [i] 
-  ; i can be 2 thru 6
-  (case i
-    2 32
-    3 (* 32 2)
-    4 (* 32 3)
-    5 (* 32 4)
-    6 (* 32 5)
-    -1))
-
+  ; i can be 1 thru ...
+  (* (- i 1) 32))
+  
 (defn runall []
-  (let [myHashMap (hash-map (Bar. 0) (Foo. 0))]
+  (let [myHashMap (hash-map (Bar. (compute-bar-id 1)) (Foo. (compute-bar-id 1)))]
     (save-to-mmovie (list myHashMap) '("map") "map1")
     (loop [i 2
            myMap myHashMap]
-      (if (< i 6)
+      (if (< i 33)
         (recur (+ i 1) (add-to-map myMap i (compute-bar-id i))))))
   (print "thanks"))
   
